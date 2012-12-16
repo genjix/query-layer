@@ -21,13 +21,13 @@ class BlocksManager:
         depth, hash = None, None
         if type(index) == int:
             depth = index
-            block_head = self.client.block_header_by_depth(index)
+            block_head = self.client.block_header_by_depth(depth)
         elif type(index) == str and len(index) == 64:
             hash = index.decode("hex")
-            block_head = self.client.block_header_by_hash(block_hash)
+            block_head = self.client.block_header_by_hash(hash)
         elif type(index) == str and len(index) == 32:
             hash = index
-            block_head = self.client.block_header_by_hash(index)
+            block_head = self.client.block_header_by_hash(hash)
         else:
             raise IndexError("Bad index.")
         return Block(self.client, block_head, depth, hash)
