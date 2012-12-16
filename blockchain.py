@@ -330,7 +330,7 @@ class Output:
             except:
                 self.spend_ = False
             else:
-                self.spend_ = Input(self.client, self.hash, self.index,
+                self.spend_ = Input(self.client, inpoint.hash, inpoint.index,
                                     None, None)
         return self.spend_
 
