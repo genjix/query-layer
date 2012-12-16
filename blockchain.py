@@ -33,8 +33,11 @@ class BlocksManager:
         return Block(self.client, block_head, depth, hash)
 
     @property
-    def count(self):
+    def last_depth(self):
         return self.client.last_depth()
+
+    def __len__(self):
+        return self.last_depth + 1
 
 def generate_sha256_hash(data):
     return hashlib.sha256(hashlib.sha256(data).digest()).digest()[::-1]
