@@ -12,6 +12,7 @@ using namespace bc;
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TTransportUtils.h>
 using namespace apache::thrift;
+using namespace apache::thrift::concurrency;
 using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
@@ -248,8 +249,14 @@ int main()
     boost::shared_ptr<TTransportFactory> transport_factory(
         new TBufferedTransportFactory());
 
-    TSimpleServer server(processor, server_transport,
-        transport_factory, protocol_factory);
+    boost::shared_ptr<ThreadManager> thread_manager =
+        ThreadManager::newSimpleThreadManager(10);
+    boost::shared_ptr<PosixThreadFactory> thread_factory =
+        boost::shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
+    thread_manager->threadFactory(thread_factory);
+    thread_manager->start();
+    TThreadPoolServer server(processor, server_transport,
+        transport_factory, protocol_factory, thread_manager);
 
     log_info() << "Starting the server...";
     server.serve();
