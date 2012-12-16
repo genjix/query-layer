@@ -248,12 +248,20 @@ class Input:
         return self.body.sequence
     @property
     def previous_output(self):
-        self.lazy_init_body()
-        # should be the output object
-        prevout = self.body.previous_output
+        prevout = self.previous_outpoint
         output = Output(self.client, prevout.hash, prevout.index,
                         None, None)
         return output
+
+    @property
+    def previous_outpoint(self):
+        self.lazy_init_body()
+        return self.body.previous_output
+
+    @property
+    def is_coinbase(self):
+        prevout = self.previous_outpoint
+        return prevout.hash == chr(0) * 32 and prevout.index == -1
 
     @property
     def parent_tx(self):
@@ -299,6 +307,7 @@ class Output:
     def value(self):
         self.lazy_init_body()
         return self.body.value
+
     @property
     def script(self):
         self.lazy_init_body()
