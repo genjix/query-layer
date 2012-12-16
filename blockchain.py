@@ -114,6 +114,22 @@ class Block:
             tx = Transaction(self.client, tx_hash, self, self.depth_, offset)
             self.transactions_.append(tx)
 
+    @property
+    def previous_block(self):
+        if self.depth == 0:
+            raise IndexError("No previous block exists.")
+        return blocks[self.previous_block_hash]
+
+    @property
+    def next_block(self):
+        next_depth = self.depth + 1
+        if next_depth >= len(blocks):
+            raise IndexError("No next block exists (yet).")
+        blk = blocks[next_depth]
+        if blk.previous_block_hash != self.hash:
+            raise IndexError("Next block not found.")
+        return blk
+
 class TransactionsManager:
 
     def __init__(self, client):
