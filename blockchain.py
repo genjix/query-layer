@@ -102,7 +102,7 @@ class Block:
         return self.transactions_
 
     def populate_transactions(self):
-        assert self.depth_ is None or self.hash_ is None
+        assert self.depth_ is not None or self.hash_ is not None
         if self.depth_ is not None:
             tx_hashes = \
                 self.client.block_transaction_hashes_by_depth(self.depth_)
