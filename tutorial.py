@@ -71,8 +71,8 @@ Type next() to continue.
 """Lets find the transaction history for a Bitcoin address by looking up
 the outputs (or credited funds) and inputs (or debited funds).
 
-    > blockchain.outputs["12Big2VKYfq5UE46iHrSCRZjDUx9aDVGpu"]
-    > outputs = blockchain.outputs['12Big2VKYfq5UE46iHrSCRZjDUx9aDVGpu']
+    > blockchain.outputs["18BxaKNikegfyCZigbfrr4jK8jTvNkEsyi"]
+    > outputs = blockchain.outputs["18BxaKNikegfyCZigbfrr4jK8jTvNkEsyi"]
     > inputs = [output.spend for output in outputs]
 
 The last line gives us a list of each corresponding spend for each output
