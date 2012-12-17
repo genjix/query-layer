@@ -104,5 +104,6 @@ def next():
     print texts[0]
     texts = texts[1:] + texts[0:1]
 
-next()
+if __name__ == "__main__":
+    next()
 
