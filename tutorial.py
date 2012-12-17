@@ -3,7 +3,7 @@ texts = [
 
     > import blockchain
 
-Use next() to move to the next help.
+Type next() to continue.
 """,
 
 """The blockchain module gives us access to Bitcoin's blockchain in an easy
@@ -13,6 +13,8 @@ block number:
     > blockchain.blocks[110]
     > bh = blockchain.blocks[110].hash
     > bh.encode("hex")
+
+Type next() to continue.
 """,
 
 """Either the human readable or raw hash bytes are accepted for indexing
@@ -20,11 +22,15 @@ blocks, transactions and other data. The statements below are equivalent.
 
     > blockchain.blocks[bh]
     > blockchain.blocks[bh.encode("hex")]
+
+Type next() to continue.
 """,
 
 """How many blocks are in our blockchain?
 
     > len(blockchain.blocks)
+
+Type next() to continue.
 """,
 
 """We can move forwards and backwards in the chain as needed, and access
@@ -35,6 +41,8 @@ block attributes we need.
     > b.next_block
     > b.next_block.next_block.next_block
     > b.depth, b.hash, b.merkle, b.nonce, b.timestamp
+
+Type next() to continue.
 """,
 
 """We have access to transactions too through either the block or the
@@ -44,6 +52,8 @@ blockchain interface.
     > tx = b.transactions[0]
     > tx.hash
     > blockchain.transactions[tx.hash].hash
+
+Type next() to continue.
 """,
 
 """Through the transaction, we can lookup various fields, the inputs, and
@@ -54,11 +64,12 @@ outputs.
     > tx.outputs
     > tx.outputs[0].value
     > tx.outputs[0].spend
+
+Type next() to continue.
 """,
 
-"""Lets find the transaction history for the Bitcoin address
-12Big2VKYfq5UE46iHrSCRZjDUx9aDVGpu by looking up the outputs (or credited
-funds) and inputs (or debited funds).
+"""Lets find the transaction history for a Bitcoin address by looking up
+the outputs (or credited funds) and inputs (or debited funds).
 
     > blockchain.outputs["12Big2VKYfq5UE46iHrSCRZjDUx9aDVGpu"]
     > outputs = blockchain.outputs['12Big2VKYfq5UE46iHrSCRZjDUx9aDVGpu']
@@ -66,6 +77,8 @@ funds) and inputs (or debited funds).
 
 The last line gives us a list of each corresponding spend for each output
 in out list. If an output is unspent then False is returned instead.
+
+Type next() to continue.
 """,
 
 """Every output either has 1 or 0 inputs associated with it:
@@ -73,6 +86,8 @@ in out list. If an output is unspent then False is returned instead.
     > outputs[0]
     > outputs[0].spend
     > outputs[0].spend.previous_output
+
+Type next() to continue.
 """,
 
 """To check the balance of the address, we need to total the money coming in
@@ -88,6 +103,8 @@ read the amount coming into the input.
 
 The total balance of this address is 0. All the money has been spent.
 That's because there are no unspent outputs.
+
+Type next() to continue.
 """,
 
 """We can find the chronology of inputs and outputs by looking up their
