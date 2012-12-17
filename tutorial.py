@@ -99,7 +99,7 @@ For the inputs, that's slightly more complicated since Bitcoin doesn't store
 any values in the input. Instead you must lookup the previous output and then
 read the amount coming into the input.
 
-    > sum(input.previous_output.value for input in inputs)
+    > sum(input.previous_output.value for input in inputs if input)
 
 The total balance of this address is 0. All the money has been spent.
 That's because there are no unspent outputs.
