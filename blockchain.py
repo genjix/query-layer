@@ -236,7 +236,7 @@ class Input:
 
     def lazy_init_body(self):
         if self.body is None:
-            self.body = self.parent_tx.inputs[self.index]
+            self.body = self.client.transaction[self.hash].inputs[self.index]
 
     @property
     def script(self):
@@ -301,7 +301,7 @@ class Output:
 
     def lazy_init_body(self):
         if self.body is None:
-            self.body = self.parent_tx.outputs[self.index]
+            self.body = self.client.transaction[self.hash].outputs[self.index]
 
     @property
     def value(self):
