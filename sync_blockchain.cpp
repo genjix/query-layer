@@ -136,6 +136,7 @@ size_t sync_blockchain::last_depth() const
 size_t sync_blockchain::last_depth(std::error_code& ec) const
 {
     // We discard the index since it isn't used for fetching the last depth.
+    // get_impl expects an index value so we give it a value to discard.
     return get_impl<size_t>(
         std::bind(&blockchain::fetch_last_depth, &chain_, _2),
         0, ec);
