@@ -21,6 +21,12 @@ class BlocksManager:
         depth, hash = None, None
         if type(index) == int:
             depth = index
+            if depth < 0:
+                last_depth = self.last_depth
+                if abs(depth) > last_depth + 1:
+                    raise IndexError("Negative index out of range.")
+                # Count backwards from the end
+                depth = self.last_depth + depth + 1
             block_head = self.client.block_header_by_depth(depth)
         elif type(index) == str and len(index) == 64:
             hash = index.decode("hex")

@@ -235,7 +235,7 @@ void blockchain_service_handler::outputs(
 int main()
 {
     async_service service(1);
-    bdb_blockchain chain(service);
+    leveldb_blockchain chain(service);
     chain.start("database", blockchain_started);
 
     boost::shared_ptr<TProtocolFactory> protocol_factory(
